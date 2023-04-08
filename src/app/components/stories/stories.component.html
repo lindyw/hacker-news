@@ -1,1 +1,31 @@
-<p>stories works!</p>
+<cdk-virtual-scroll-viewport
+  (scrolledIndexChange)="getScrollIndex($event)"
+  itemSize="30"
+  class="scroll-viewport"
+>
+  <div
+    *cdkVirtualFor="let story of stories; index as i; templateCacheSize: 0"
+    class="list-item"
+  >
+    <ng-container>
+      <div class="content">
+        <span class="title">{{ i + 1 }}.<a href="{{ story.url }}"> {{ story.title }} <mat-icon>launch</mat-icon></a></span>
+        <span class="description">
+          <span> Posted <span [matTooltip]="showDateTime(story.time)">{{ story.time * 1000 | dateTimeAgo }}  </span>by <a (click)="getUser(story.by)" ><mat-icon>person</mat-icon>{{ story.by }}</a ></span>
+        </span>
+        <div class="spacer"></div>
+      </div>
+    </ng-container>
+  </div>
+</cdk-virtual-scroll-viewport>
+
+<button
+  mat-mini-fab
+  [ngClass]="isTop ? 'hide' : 'show'"
+  class="back-to-top show"
+  color="primary"
+  (click)="backToTop()"
+  aria-label="back to top"
+>
+  <mat-icon>arrow_upward</mat-icon>
+</button>

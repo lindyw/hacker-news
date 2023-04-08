@@ -1,43 +1,42 @@
 header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px;
 }
 
 .logo {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 nav ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0.5rem;
+  padding: 0;
 }
 
 nav li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 nav a {
-    text-decoration: none;
-    color: #0066cc;
+  text-decoration: none;
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {
-    header {
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-    }
-    
-    nav ul {
-      justify-content: flex-start;
-    }
-    
-    nav li {
-      margin-left: 0;
-      margin-top: 10px;
-    }
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
   }
+
+  nav ul {
+    justify-content: flex-start;
+  }
+
+  nav li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

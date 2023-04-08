@@ -1,7 +1,5 @@
 :host {
     width: 100%;
-    background: #ff6600;
-    position: sticky;
     bottom: 0;
 
     .wrapper {
@@ -18,11 +16,22 @@
         flex-wrap: wrap;
         margin-block: 1rem;
         align-items: center;
+    }
 
-        a {
-            padding: 0 1rem;
-            text-align: center;
-        }
+    a {
+        min-width: 3rem;
+        color: white;
+        padding: 0 1rem;
+        text-align: center;
+        text-decoration: dotted;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:visited {
+        color: white;
     }
 
     @media only screen and (max-width: 768px) {
