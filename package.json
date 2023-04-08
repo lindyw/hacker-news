@@ -1,6 +1,7 @@
 {
   "name": "hacker-news",
   "version": "0.0.0",
+  "author": "Woon Him (Lindy) Wong",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
