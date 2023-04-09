@@ -4,12 +4,12 @@ export interface Story {
     // total comment count
     descendants: number
     dead?: boolean
-    kids: number[]
+    kids?: number[]
     score: number
     time: number
     title: string
-    type: 'job' | 'story' | 'comment' | 'poll' | 'pollopt'
-    url: string
+    type: string // 'job' | 'story' | 'comment' | 'poll' | 'pollopt'
+    url?: string
 }
     
 export type StoryType = 'new' | 'ask' | 'show' | 'job';
