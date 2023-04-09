@@ -1,76 +1,76 @@
-<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar
+  color="accent"
+  *ngIf="isLoading"
+  mode="indeterminate"
+></mat-progress-bar>
 
-<!-- <div class="ab aw ax ay dq q dr ds">
-  <div
-    class="bk"
-    aria-hidden="false"
-    aria-describedby="searchResults"
-    aria-labelledby="searchResults"
-  ></div>
-  <div class="bl bm ab">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M4.1 11.06a6.95 6.95 0 1 1 13.9 0 6.95 6.95 0 0 1-13.9 0zm6.94-8.05a8.05 8.05 0 1 0 5.13 14.26l3.75 3.75a.56.56 0 1 0 .8-.79l-3.74-3.73A8.05 8.05 0 0 0 11.04 3v.01z"
-        fill="currentColor"
-      ></path>
+<div class="update-status" *ngIf="!isLoading">
+  <span> Updated by {{ updateTimestamp | date : "MMM d, y, hh:mm:ss " }} </span>
+  <button
+    mat-raised-button
+    class="update-btn animated-btn"
+    (click)="fetchData('new')"
+  >
+    <mat-icon>update</mat-icon> Check For Update
+  </button>
+</div>
+<!-- <div id="search" class="flex--item ps-relative">
+    <input value="" class="s-input s-input__search fs-body3" type="text" placeholder="Find by job title…" autocomplete="off" spellcheck="false">
+    <svg aria-hidden="true" class="svg-icon iconSearch s-input-icon s-input-icon__search" width="18" height="18" viewBox="0 0 18 18">
+        <path d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"></path>
     </svg>
-  </div>
-  <input
-    role="combobox"
-    aria-controls="searchResults"
-    aria-expanded="false"
-    aria-label="search"
-    tabindex="0"
-    class="aw bc bd be z bf bg bh dt du"
-    placeholder="Search Medium"
-    value=""
-  />
 </div> -->
+
 <cdk-virtual-scroll-viewport
   (scrolledIndexChange)="getScrollIndex($event)"
-  itemSize="30"
+  itemSize="220"
   class="scroll-viewport"
 >
   <ng-container
     *cdkVirtualFor="let story of stories; index as i; templateCacheSize: 0"
   >
-    <div class="content">
-      <span class="description">
-        {{ story.time * 1000 | date: 'short' }} <mat-icon class="star">auto_awesome</mat-icon>
-      </span>
-      <span class="title"
-        ><a href="{{ story.url }}">
-          {{ story.title }} <mat-icon>launch</mat-icon></a
-        ></span
-      >
-      <div class="description">
-        <span>Posted</span>
-        <!-- Date Time -->
-        <span [matTooltip]="showDateTime(story.time)"
-          >{{ story.time * 1000 | dateTimeAgo }}
+    <div class="item-container">
+      <span class="number">{{ i + 1 | number : "2.0" }}</span>
+      <div class="content">
+        <div class="description">
+          <span>{{ story.time * 1000 | date : "MMM d, y, h:mm a" }}</span>
+        </div>
+        <span class="title">
+          <a *ngIf="!!story.url" href="{{ story.url }}"> {{ story.title }}</a>
+          <ng-container *ngIf="!story.url">{{ story.title }}</ng-container>
         </span>
-        <span>by</span>
-        <!-- User -->
-        <span>
-          <a><mat-icon>person</mat-icon>{{ story.by }}</a>
-        </span>
-        <!-- point -->
-        <span>
-          <mat-icon>grade</mat-icon>{{ story.score }}
-          {{ story.score > 1 ? "points" : "point" }}
-        </span>
+        <div class="description">
+          <span>Posted</span>
+          <!-- Date Time -->
+          <span [matTooltip]="showDateTime(story.time)"
+            >{{ story.time * 1000 | dateTimeAgo }}
+          </span>
+          <!-- point -->
+          <span>
+            <mat-icon class="star">auto_awesome</mat-icon
+            >{{ " " + story.score }}
+            {{ story.score > 1 ? "points" : "point" }}
+          </span>
+          <span>by</span>
+          <!-- User -->
+          <span>
+            <a><mat-icon>person</mat-icon>{{ story.by }}</a>
+          </span>
+          <!-- Comment -->
+          <span class="comment">
+            <mat-icon>comment</mat-icon>
+            {{ !!story.kids ? story.kids.length : 0 }}
+          </span>
+        </div>
+        <div class="spacer"></div>
       </div>
-      <div class="spacer"></div>
     </div>
   </ng-container>
 </cdk-virtual-scroll-viewport>
 
 <button
-  mat-mini-fab
   [ngClass]="isTop ? 'hide' : 'show'"
-  class="back-to-top show"
+  class="back-to-top show animated-btn"
   color="primary"
   (click)="backToTop()"
   aria-label="back to top"

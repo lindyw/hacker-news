@@ -2,7 +2,8 @@
 @import "theme";
 body {
     /* Clean, modern design and highly readable */
-    font-family: "Open Sans", sans-serif;
+    // font-family: "Open Sans", sans-serif;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
 }
 
@@ -21,7 +22,7 @@ cdk-stepper::-webkit-scrollbar {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #fa8100; //handle
+    background: #FFC017; //handle
     border-radius: 2px;
 }
 

@@ -1,8 +1,8 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Story } from 'src/app/interfaces/story.interface';
+import { Story, StoryType } from 'src/app/interfaces/story.interface';
 import { StoryService } from 'src/app/services/story.service';
 
 @Component({
@@ -12,36 +12,55 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class StoriesComponent implements OnInit, OnDestroy {
     @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
+    @Input() type: StoryType = 'new';
+
     public stories: Story[] = [];
     public isTop = true;
     public isLoading = true;
+    public updateTimestamp: Date;
 
     private subscriptions: Subscription[] = [];
 
     constructor(
-        private getService: StoryService,
+        private storyService: StoryService,
         private router: Router
     ) { }
 
     ngOnInit(): void {
-        this.fetchData();
+        this.fetchData(this.type);
     }
 
     ngOnDestroy(): void {
         for (const sub of this.subscriptions) {
             sub.unsubscribe();
         }
+        this.storyService.clearCache();
     }
 
-    fetchData() {
-        this.getService.getNewStories()
-            .subscribe(stories => {
-                console.log('stories', stories.length);
-                if (stories.length === 500) {
-                    this.isLoading = false;
-                }
-                this.stories = stories.filter(story => !!story);
-            })
+    fetchData(type: StoryType) {
+        this.isLoading = true;
+        const total = type === 'new' ? 500 : 200;
+        // fetch all 500 new stories
+        let fetchStories$ = this.storyService.getLatestStoriesByType(type);
+
+
+        const sub =
+            fetchStories$
+                .subscribe((stories: Story[]) => {
+
+                    console.log('stories', stories.length);
+
+                    if (stories.length === total) {
+                        this.storyService.setStoryCacheByType(type, stories);
+                        this.updateTimestamp = new Date();
+                        this.isLoading = false;
+                    }
+                    let filtered_stories = stories.filter(story => !!story);
+                    this.stories = filtered_stories
+                })
+
+        this.subscriptions.push(sub);
+
     }
 
     public getScrollIndex(index: number) {
@@ -58,3 +77,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
     }
 
 }
+function waitUntil(): import("rxjs").OperatorFunction<Story[], unknown> {
+    throw new Error('Function not implemented.');
+}
+

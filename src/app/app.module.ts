@@ -15,7 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { DateTimeAgoPipe } from './pipes/date-time-ago.pipe';
-import { UserComponent } from './components/user/user.component';
+import { FilteringChipsComponent } from './components/filtering-chips/filtering-chips.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +24,7 @@ import { UserComponent } from './components/user/user.component';
         FooterComponent,
         StoriesComponent,
         DateTimeAgoPipe,
-        UserComponent,
+        FilteringChipsComponent
     ],
     imports: [
         AppRoutingModule,

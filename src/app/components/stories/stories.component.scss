@@ -17,11 +17,35 @@ a:hover {
 
 mat-icon {
     vertical-align: sub;
-    font-size: 18px;
+    font-size: 24px;
     color: lightslategrey;
 
     &.star {
-        color:orange
+        color: orange;
+    }
+}
+
+.update-status {
+    align-self: flex-end;
+    padding: 1rem;
+    color: #292929;
+
+    span {
+        margin-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .update-status {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        span {
+            margin: 0;
+        }
+        button {
+            margin-block: 5px;
+        }
     }
 }
 
@@ -32,23 +56,39 @@ mat-icon {
     min-width: 100%;
 }
 
+.item-container {
+    display: flex;
+    flex-direction: row;
+    min-width: 7.333333rem;
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    .number {
+        color: rgba(230, 230, 230, 1);
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: 0px;
+        margin-top: 8px;
+    }
+}
+
 .content {
     display: flex;
     flex-direction: column;
-    min-width: 7.333333rem;
-    margin: 2rem;
+    width: 100%;
+    margin: 1rem;
 }
 
 .title {
-    color: #1a73e8;
-    font-size: 0.9rem;
-    font-weight: 900;
+    color: #213343;
+    font-size: 1.2rem;
+    font-weight: bold;
     line-height: 2rem;
     margin-bottom: 0.25rem;
 }
 
 .title a {
-    color: #1a73e8;
     text-decoration: none;
 }
 
@@ -63,10 +103,12 @@ mat-icon {
 
     span {
         margin-right: 0.25rem;
+
+        &.comment {
+            margin-left: 3px;
+        }
     }
 }
-
-
 
 .spacer {
     flex-grow: 1;
@@ -74,15 +116,37 @@ mat-icon {
     border-bottom: 1px solid rgba(87, 87, 87, 0.2);
 }
 
+.animated-btn {
+    background-color: #ffffff;
+    color: #fa8100;
+    border: none;
+    text-align: center;
+    transition: 0.3s;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.36);
+    mat-icon {
+        color: #fa8100;
+        font-size: 24px;
+    }
+
+    transition: background-color 0.25s;
+    &:hover {
+        background-color: #fa8100;
+        color: #ffffff;
+        mat-icon {
+            color: white;
+        }
+    }
+}
+
 .back-to-top {
     position: fixed;
     bottom: 5px;
     right: 1rem;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    mat-icon {
-        color:white;
-    }
+    cursor: pointer;
+    margin-top: 8px;
+    width: 48px;
+    height: 48px;
 }
 
 .show {

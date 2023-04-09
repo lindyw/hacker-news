@@ -35,6 +35,39 @@ $mat-orange: (
     )
 );
 
+$mat-red: (
+    50 : #f4e7e3,
+    100 : #e3c2b9,
+    200 : #d09a8b,
+    300 : #bd715c,
+    400 : #af5239,
+    500 : #a13416,
+    600 : #992f13,
+    700 : #8f2710,
+    800 : #85210c,
+    900 : #741506,
+    A100 : #ffaba3,
+    A200 : #ff7d70,
+    A400 : #ff4e3d,
+    A700 : #ff3724,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
 /* For use in src/lib/core/theming/_palette.scss */
 $mat-white: (
     50 : #ffffff,
@@ -105,8 +138,8 @@ $mat-blue: (
 
 
 // Define your custom theme colors
-$my-custom-primary: mat-palette($mat-blue);
-$my-custom-accent: mat-palette($mat-pink, 100, 500, A100);
+$my-custom-primary: mat-palette($mat-orange);
+$my-custom-accent: mat-palette($mat-red);
 $my-custom-warn: mat-palette($mat-lime);
 $my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
 @include angular-material-theme($my-custom-theme);

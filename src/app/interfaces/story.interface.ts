@@ -12,3 +12,4 @@ export interface Story {
     url: string
 }
     
+export type StoryType = 'new' | 'ask' | 'show' | 'job';

@@ -2,11 +2,12 @@
   <div class="logo">
     <a routerLink="/"><img src="assets/logo.png" alt="Hacker News Logo" /></a>
   </div>
-  <nav>
-    <ul>
-      <li><a [class.active]="activeTab === 'Latest'" (click)="activeTab = 'Latest'" routerLink="/">Latest</a></li>
-      <li><a [class.active]="activeTab === 'Top'" (click)="activeTab = 'Top'" routerLink="/">Top</a></li>
-      <li><a [class.active]="activeTab === 'Best'"  (click)="activeTab = 'Best'" routerLink="/">Best</a></li>
-    </ul>
-  </nav>
 </header>
+<div class="sub-header-container">
+  <h2 class="sub-header">Stay curious.</h2>
+  <div>
+    <span class="ct">
+      <h3>Discover new stories that gratifies one's intellectual curiosity.</h3>
+    </span>
+  </div>
+</div>
