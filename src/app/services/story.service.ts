@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, bufferCount, combineLatest, concatMap, forkJoin, from, map, mergeMap, scan, shareReplay, switchMap } from 'rxjs';
+import { Observable, bufferCount, from, mergeMap, scan, shareReplay } from 'rxjs';
 import { Story } from '../interfaces/story.interface';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GetService {
+export class StoryService {
 
     // hackerAPI url
     private BASE_URL = `https://hacker-news.firebaseio.com/v0`;

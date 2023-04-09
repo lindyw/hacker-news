@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/interfaces/story.interface';
-import { GetService } from 'src/app/services/get.service';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
     selector: 'app-stories',
@@ -14,10 +14,12 @@ export class StoriesComponent implements OnInit, OnDestroy {
     @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
     public stories: Story[] = [];
     public isTop = true;
+    public isLoading = true;
+
     private subscriptions: Subscription[] = [];
 
     constructor(
-        private getService: GetService,
+        private getService: StoryService,
         private router: Router
     ) { }
 
@@ -35,6 +37,9 @@ export class StoriesComponent implements OnInit, OnDestroy {
         this.getService.getNewStories()
             .subscribe(stories => {
                 console.log('stories', stories.length);
+                if (stories.length === 500) {
+                    this.isLoading = false;
+                }
                 this.stories = stories.filter(story => !!story);
             })
     }
@@ -52,7 +57,4 @@ export class StoriesComponent implements OnInit, OnDestroy {
         return new Date(unixTime * 1000).toISOString();
     }
 
-    public getUser(id: string) {
-        this.router.navigate([`user/${id}`])
-    }
 }

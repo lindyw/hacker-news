@@ -1,22 +1,39 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
 <cdk-virtual-scroll-viewport
   (scrolledIndexChange)="getScrollIndex($event)"
   itemSize="30"
   class="scroll-viewport"
 >
-  <div
+  <ng-container
     *cdkVirtualFor="let story of stories; index as i; templateCacheSize: 0"
-    class="list-item"
   >
-    <ng-container>
-      <div class="content">
-        <span class="title">{{ i + 1 }}.<a href="{{ story.url }}"> {{ story.title }} <mat-icon>launch</mat-icon></a></span>
-        <span class="description">
-          <span> Posted <span [matTooltip]="showDateTime(story.time)">{{ story.time * 1000 | dateTimeAgo }}  </span>by <a (click)="getUser(story.by)" ><mat-icon>person</mat-icon>{{ story.by }}</a ></span>
+    <div class="content">
+      <span class="title"
+        >{{ i + 1 }}.<a href="{{ story.url }}">
+          {{ story.title }} <mat-icon>launch</mat-icon></a
+        ></span
+      >
+      <div class="description">
+        <span>Posted</span>
+        <!-- Date Time -->
+        <span [matTooltip]="showDateTime(story.time)"
+          >{{ story.time * 1000 | dateTimeAgo }}
         </span>
-        <div class="spacer"></div>
+        <span>by</span>
+        <!-- User -->
+        <span>
+          <a><mat-icon>person</mat-icon>{{ story.by }}</a>
+        </span>
+        <!-- point -->
+        <span>
+          <mat-icon>grade</mat-icon>{{ story.score }}
+          {{ story.score > 1 ? "points" : "point" }}
+        </span>
       </div>
-    </ng-container>
-  </div>
+      <div class="spacer"></div>
+    </div>
+  </ng-container>
 </cdk-virtual-scroll-viewport>
 
 <button
@@ -26,6 +43,7 @@
   color="primary"
   (click)="backToTop()"
   aria-label="back to top"
+  matTooltip="Scroll back to top"
 >
   <mat-icon>arrow_upward</mat-icon>
 </button>
