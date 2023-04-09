@@ -18,7 +18,11 @@ a:hover {
 mat-icon {
     vertical-align: sub;
     font-size: 18px;
-    color: cornflowerblue;
+    color: lightslategrey;
+
+    &.star {
+        color:orange
+    }
 }
 
 .scroll-viewport {

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  public activeTab = 'Latest';
   constructor() { }
 
   ngOnInit(): void {

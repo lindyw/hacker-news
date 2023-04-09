@@ -4,9 +4,9 @@
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/">Lastest</a></li>
-      <li><a routerLink="/">Top</a></li>
-      <li><a routerLink="/">Best</a></li>
+      <li><a [class.active]="activeTab === 'Latest'" (click)="activeTab = 'Latest'" routerLink="/">Latest</a></li>
+      <li><a [class.active]="activeTab === 'Top'" (click)="activeTab = 'Top'" routerLink="/">Top</a></li>
+      <li><a [class.active]="activeTab === 'Best'"  (click)="activeTab = 'Best'" routerLink="/">Best</a></li>
     </ul>
   </nav>
 </header>

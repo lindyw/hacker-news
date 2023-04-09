@@ -1,5 +1,33 @@
 <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
+<!-- <div class="ab aw ax ay dq q dr ds">
+  <div
+    class="bk"
+    aria-hidden="false"
+    aria-describedby="searchResults"
+    aria-labelledby="searchResults"
+  ></div>
+  <div class="bl bm ab">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M4.1 11.06a6.95 6.95 0 1 1 13.9 0 6.95 6.95 0 0 1-13.9 0zm6.94-8.05a8.05 8.05 0 1 0 5.13 14.26l3.75 3.75a.56.56 0 1 0 .8-.79l-3.74-3.73A8.05 8.05 0 0 0 11.04 3v.01z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  </div>
+  <input
+    role="combobox"
+    aria-controls="searchResults"
+    aria-expanded="false"
+    aria-label="search"
+    tabindex="0"
+    class="aw bc bd be z bf bg bh dt du"
+    placeholder="Search Medium"
+    value=""
+  />
+</div> -->
 <cdk-virtual-scroll-viewport
   (scrolledIndexChange)="getScrollIndex($event)"
   itemSize="30"
@@ -9,8 +37,11 @@
     *cdkVirtualFor="let story of stories; index as i; templateCacheSize: 0"
   >
     <div class="content">
+      <span class="description">
+        {{ story.time * 1000 | date: 'short' }} <mat-icon class="star">auto_awesome</mat-icon>
+      </span>
       <span class="title"
-        >{{ i + 1 }}.<a href="{{ story.url }}">
+        ><a href="{{ story.url }}">
           {{ story.title }} <mat-icon>launch</mat-icon></a
         ></span
       >
