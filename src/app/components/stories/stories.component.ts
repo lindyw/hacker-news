@@ -8,7 +8,7 @@ import { StoryService } from 'src/app/services/story.service';
 @Component({
     selector: 'app-stories',
     templateUrl: './stories.component.html',
-    styleUrls: ['./stories.component.scss']
+    styleUrls: ['./stories.component.scss', './search-bar.scss']
 })
 export class StoriesComponent implements OnInit, OnDestroy {
     @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;

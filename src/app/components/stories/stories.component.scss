@@ -25,10 +25,13 @@ mat-icon {
     }
 }
 
-.update-status {
-    align-self: flex-end;
-    padding: 1rem;
-    color: #292929;
+.operation-bar {
+    display: flex;
+    flex-direction: row;
+    width: 95vw;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
 
     span {
         margin-right: 1rem;
@@ -36,7 +39,7 @@ mat-icon {
 }
 
 @media only screen and (max-width: 768px) {
-    .update-status {
+    .operation-bar {
         display: flex;
         flex-direction: column;
         align-self: center;
@@ -44,7 +47,7 @@ mat-icon {
             margin: 0;
         }
         button {
-            margin-block: 5px;
+            margin-block-start: 10px;
         }
     }
 }
