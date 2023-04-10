@@ -6,9 +6,15 @@
 
 <!-- Search bar, Check for update Button -->
 <div class="operation-bar" *ngIf="!isLoading">
-  <div class="cntr">
-    <label class="search" for="inpt_search">
-      <input id="inpt_search" type="text" />
+  <div class="cntr" matTooltip="Search for...">
+    <label class="search" for="input_search">
+      <input
+        id="input_search"
+        type="text"
+        (keyup)="applyFilter($event)"
+        [(ngModel)]="searchValue"
+        alt="Search for Story..."
+      />
     </label>
   </div>
   <span> Updated by {{ updateTimestamp | date : "MMM d, y, hh:mm:ss " }} </span>
@@ -28,7 +34,11 @@
   class="scroll-viewport"
 >
   <ng-container
-    *cdkVirtualFor="let story of stories; index as i; templateCacheSize: 0"
+    *cdkVirtualFor="
+      let story of filteredStories;
+      index as i;
+      templateCacheSize: 0
+    "
   >
     <div class="item-container">
       <span class="number">{{ i + 1 | number : "2.0" }}</span>

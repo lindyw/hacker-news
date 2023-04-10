@@ -15,6 +15,8 @@ export class StoriesComponent implements OnInit, OnDestroy {
     @Input() type: StoryType = 'new';
 
     public stories: Story[] = [];
+    public filteredStories: Story[] = [];
+    public searchValue: string = '';
     public isTop = true;
     public isLoading = true;
     public updateTimestamp: Date;
@@ -39,6 +41,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
     fetchData(type: StoryType) {
         this.isLoading = true;
+        this.searchValue = '';
         const total = type === 'new' ? 500 : 200;
         // fetch all 500 new stories
         let fetchStories$ = this.storyService.getLatestStoriesByType(type);
@@ -56,11 +59,16 @@ export class StoriesComponent implements OnInit, OnDestroy {
                         this.isLoading = false;
                     }
                     let filtered_stories = stories.filter(story => !!story);
-                    this.stories = filtered_stories
+                    this.stories = this.filteredStories = filtered_stories;
                 })
 
         this.subscriptions.push(sub);
 
+    }
+
+    public applyFilter(event: KeyboardEvent) {
+        const search_filter = (<HTMLInputElement>event.target).value.trim().toLowerCase();
+        this.filteredStories = this.stories.filter(s => s.title.toLowerCase().includes(search_filter));
     }
 
     public getScrollIndex(index: number) {
@@ -77,7 +85,5 @@ export class StoriesComponent implements OnInit, OnDestroy {
     }
 
 }
-function waitUntil(): import("rxjs").OperatorFunction<Story[], unknown> {
-    throw new Error('Function not implemented.');
-}
+
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -30,6 +31,7 @@ import { FilteringChipsComponent } from './components/filtering-chips/filtering-
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
+        FormsModule,
         HttpClientModule,
         MatChipsModule,
         MatIconModule,
