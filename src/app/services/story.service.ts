@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, bufferCount, from, mergeMap, of, scan } from 'rxjs';
+import { Observable, bufferCount, from, mergeMap, of, scan, take, tap } from 'rxjs';
 import { Story, StoryType } from '../interfaces/story.interface';
 
 @Injectable({
@@ -8,17 +8,27 @@ import { Story, StoryType } from '../interfaces/story.interface';
 })
 export class StoryService {
 
-    // TODO: implement a cache for stories
+    public updateTimeStamp: { [type: string]: Date } = {};
+
     private story_cache = new Map<string, Story[]>();
-    private id_cache = new Map<string, number[]>();
+    private total_cache = new Map<string, number>();
+
 
     // hackerAPI url
     private BASE_URL = `https://hacker-news.firebaseio.com/v0`;
 
     constructor(
         private http: HttpClient
-    ) { }
+    ) {
+        this.init()
+    }
 
+    init() {
+        // fetch other type of stores ids for length and cache
+        this.getLatesetStoryIDsByType('ask');
+        this.getLatesetStoryIDsByType('show');
+        this.getLatesetStoryIDsByType('job');
+    }
     /**
      * Fetch Latest 500 new stories or 200 Ask HN, Show HN or Job Stories 
      * @param type type of stories (new, show, ask or job)
@@ -33,30 +43,47 @@ export class StoryService {
 
         return this.http.get<number[]>(uri)
             .pipe(
+                tap((ids: number[]) => {
+                    if (!this.total_cache.has(type)) {
+                        this.total_cache.set(type, ids.length);
+                    }
+                    this.updateTimeStamp[type] = new Date();
+                }),
                 mergeMap((ids: number[]) => from(ids)),
                 mergeMap((id: number) => this.getStoryById(id)),
-                bufferCount(30),
+                bufferCount(50),
                 scan((acc: Story[], stories: Story[]) => [...acc, ...stories], [])
             )
     }
 
     public getLatesetStoryIDsByType(type: StoryType): Observable<number[]> {
         const uri = `${this.BASE_URL}/${type}stories.json`;
-        return this.http.get<number[]>(uri);
+        const response = this.http.get<number[]>(uri);
+
+        response
+            .pipe(
+                take(1),
+                tap(ids => {
+                    if (!this.total_cache.has(type)) {
+                        this.total_cache.set(type, ids.length);
+                    }
+                    console.log(this.total_cache.get(type))
+                })).subscribe()
+
+        return response;
+    }
+
+    public getStoriesCount(type: StoryType) {
+        return this.total_cache.get(type)!;
     }
 
     public setStoryCacheByType(type: StoryType, stories: Story[]) {
         this.story_cache.set(type, stories);
     }
 
-    public setIdsCacheByType(type: StoryType, ids: number[]) {
-        this.id_cache.set(type, ids);
-    }
-
-
     public clearCache() {
         this.story_cache.clear();
-        this.id_cache.clear();
+        this.total_cache.clear();
     }
 
     private getStoryById(id: number): Observable<Story> {

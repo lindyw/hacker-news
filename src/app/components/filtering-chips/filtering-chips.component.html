@@ -1,4 +1,12 @@
-<input type="radio" id="New" name="new" value="New" checked>
-<input type="radio" id="Job" name="job" value="Job">
-<input type="radio" id="Ask" name="ask" value="Ask">
-<input type="radio" id="Show" name="show" value="Show">
+<mat-chip-list aria-label="Fish selection">
+  <mat-chip
+    *ngFor="let selection of chipSelections | keyvalue"
+    color="accent"
+    [selectable]="true"
+    [selected]="selection.value.selected"
+    [value]="selection.key"
+    (click)="updateSelection(chip)"
+    #chip="matChip"
+    >{{ selection.value.name }}</mat-chip
+  >
+</mat-chip-list>

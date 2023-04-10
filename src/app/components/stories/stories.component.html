@@ -5,7 +5,10 @@
 ></mat-progress-bar>
 
 <!-- Search bar, Check for update Button -->
-<div class="operation-bar" *ngIf="!isLoading">
+<div class="operation-bar">
+  <nav-filtering-chips
+    (storyType)="switchStoryType($event)"
+  ></nav-filtering-chips>
   <div class="cntr" matTooltip="Search for...">
     <label class="search" for="input_search">
       <input
@@ -17,11 +20,14 @@
       />
     </label>
   </div>
-  <span> Updated by {{ updateTimestamp | date : "MMM d, y, hh:mm:ss " }} </span>
+  <span *ngIf="!isLoading">
+    Updated by {{ updateTimestamp[type] | date : "MMM d, y, hh:mm:ss " }}
+  </span>
   <button
+    *ngIf="!isLoading"
     mat-raised-button
     class="update-btn animated-btn"
-    (click)="fetchData('new')"
+    (click)="checkUpdate()"
   >
     <mat-icon>update</mat-icon> Check For Update
   </button>

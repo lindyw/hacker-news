@@ -1,6 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Story, StoryType } from 'src/app/interfaces/story.interface';
 import { StoryService } from 'src/app/services/story.service';
@@ -12,14 +11,14 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class StoriesComponent implements OnInit, OnDestroy {
     @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
-    @Input() type: StoryType = 'new';
+    type: StoryType = 'new';
 
     public stories: Story[] = [];
     public filteredStories: Story[] = [];
     public searchValue: string = '';
     public isTop = true;
     public isLoading = true;
-    public updateTimestamp: Date;
+    public updateTimestamp: { [type: string]: Date } = {};
 
     private subscriptions: Subscription[] = [];
 
@@ -38,12 +37,13 @@ export class StoriesComponent implements OnInit, OnDestroy {
         this.storyService.clearCache();
     }
 
-    fetchData(type: StoryType) {
+    fetchData(type: StoryType, useCache: boolean = false) {
         this.isLoading = true;
         this.searchValue = '';
-        const total = type === 'new' ? 500 : 200;
-        // fetch all 500 new stories
-        let fetchStories$ = this.storyService.getLatestStoriesByType(type);
+        let total = type === 'new' ? 500 : this.storyService.getStoriesCount(type);
+        console.log('total', total);
+        // fetch all 500 new stories or other type of Stories
+        let fetchStories$ = this.storyService.getLatestStoriesByType(type, useCache);
 
 
         const sub =
@@ -54,7 +54,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
                     if (stories.length === total) {
                         this.storyService.setStoryCacheByType(type, stories);
-                        this.updateTimestamp = new Date();
+                        this.updateTimestamp[type] = this.storyService.updateTimeStamp[type];
                         this.isLoading = false;
                     }
                     let filtered_stories = stories.filter(story => !!story);
@@ -65,9 +65,19 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
     }
 
+    public switchStoryType(type: any) {
+        this.type = type;
+        this.fetchData(type, true);
+    }
+
     public applyFilter(event: KeyboardEvent) {
         const search_filter = (<HTMLInputElement>event.target).value.trim().toLowerCase();
         this.filteredStories = this.stories.filter(s => s.title.toLowerCase().includes(search_filter));
+    }
+
+    public checkUpdate() {
+        this.storyService.clearCache();
+        this.fetchData(this.type);
     }
 
     public getScrollIndex(index: number) {

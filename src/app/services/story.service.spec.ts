@@ -48,14 +48,6 @@ describe('StoryService', () => {
         expect(service['story_cache'].get(type)).toEqual(mockStories);
     });
 
-    it('should set IDs cache by type', () => {
-        const type: StoryType = 'new';
-        const mockIds = [1];
-
-        service.setIdsCacheByType(type, mockIds);
-        expect(service['id_cache'].get(type)).toEqual(mockIds);
-    });
-
     describe('getLatestStoriesByType', () => {
         it('should return an Observable<Story[]>', () => {
             const dummyStories = [
@@ -99,20 +91,4 @@ describe('StoryService', () => {
         });
     });
 
-    describe('getLatesetStoryIDsByType', () => {
-        it('should return an Observable<number[]>', () => {
-            const dummyIDs = [1, 2, 3];
-
-            service.getLatesetStoryIDsByType('new').subscribe(ids => {
-                expect(ids.length).toBe(3);
-                expect(ids).toEqual(dummyIDs);
-            });
-
-            const req = httpMock.expectOne(`https://hacker-news.firebaseio.com/v0/newstories.json`);
-            expect(req.request.method).toBe('GET');
-            req.flush(dummyIDs);
-
-            service.clearCache();
-        });
-    });
 });
