@@ -77,6 +77,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
     public checkUpdate() {
         this.storyService.clearCache();
+        this.storyService.init();
         this.fetchData(this.type);
     }
 
