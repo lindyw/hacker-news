@@ -24,8 +24,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
     constructor(
-        private storyService: StoryService,
-        private router: Router
+        private storyService: StoryService
     ) { }
 
     ngOnInit(): void {

@@ -40,7 +40,7 @@ import { FilteringChipsComponent } from './components/filtering-chips/filtering-
         MatProgressBarModule,
         ScrollingModule
     ],
-    providers: [],
+    providers: [{ provide: Window, useValue: window }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
