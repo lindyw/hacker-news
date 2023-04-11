@@ -10,16 +10,16 @@ My development versions:
 
 # My Assumptions
 
-• The web application should be compatible in any web browsers, different devices and screen sizes. It should be a responsive design.
-• Core functionality is to shows the latest stories, no need to implement the login, user profile and comments.
-• To provide a clean, modern design and highly readable UI
-• Easy to use, reduce the unnecessary actions for user
-• Adding some more features with my own decision based on target user's need, e.g. assist user to quickly browse and select the stories they want to read e.g. filter/search stories
-• Enhance the performance with implementing a cache for different type of stories, so it doesn't need to fetch and load again
-• Considering this a small scale of project, so I decide there is no need to use NgRx and lazy loading
-• Need to show I am following best practice of Angular, e.g. logical file naming convention, clear folder structure, break down components, typescript with clear interfaces and avoid using type any etc.
-• Writing test cases in Jasmine, aims for an optimal test coverage rate and keep it above 80%
-• I choose Angular 13 as the version for the project, as the team mentioned this is their target version to be updated
+- The web application should be compatible in any web browsers, different devices and screen sizes. It should be a responsive design.
+- Core functionality is to shows the latest stories, no need to implement the login, user profile and comments.
+- To provide a clean, modern design and highly readable UI
+- Easy to use, reduce the unnecessary actions for user
+- Adding some more features with my own decision based on target user's need, e.g. assist user to quickly browse and select the stories they want to read e.g. filter/search stories
+- Enhance the performance with implementing a cache for different type of stories, so it doesn't need to fetch and load again
+- Considering this a small scale of project, so I decide there is no need to use NgRx and lazy loading
+- Need to show I am following best practice of Angular, e.g. logical file naming convention, clear folder structure, break down components, typescript with clear interfaces and avoid using type any etc.
+- Writing test cases in Jasmine, aims for an optimal test coverage rate and keep it above 80%
+-I choose Angular 13 as the version for the project, as the team mentioned this is their target version to be updated
 
 
 ## Typography:
