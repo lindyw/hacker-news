@@ -49,6 +49,7 @@ describe('StoryService', () => {
     });
 
     describe('getLatestStoriesByType', () => {
+        
         it('should return an Observable<Story[]>', () => {
             const dummyStories = [
                 { id: 1, title: 'Story 1', url: 'https://www.example.com/story1', by: 'test author', score: 10, descendants: 10, type: 'story', time: 160432421 },

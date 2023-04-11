@@ -33,6 +33,5 @@ export class FilteringChipsComponent implements OnInit {
         this.storyType.emit(this.chipSelections[`${this.currentSelection}`].name.toLowerCase() as StoryType);
     }
 
-    public unsorted() { }
 
 }

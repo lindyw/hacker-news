@@ -1,6 +1,6 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Observable, Subscription, distinctUntilChanged, last } from 'rxjs';
+import { Observable, Subscription, last } from 'rxjs';
 import { Story, StoryType } from 'src/app/interfaces/story.interface';
 import { StoryService } from 'src/app/services/story.service';
 @Component({
