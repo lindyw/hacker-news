@@ -6,10 +6,6 @@
     flex: 1;
 }
 
-a {
-    color: #575757;
-}
-
 a:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -89,10 +85,10 @@ mat-icon {
     font-weight: bold;
     line-height: 2rem;
     margin-bottom: 0.25rem;
-}
-
-.title a {
-    text-decoration: none;
+    a {
+        color: #213343;
+        text-decoration: none;
+    }
 }
 
 .description {
@@ -127,12 +123,13 @@ mat-icon {
     transition: 0.3s;
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.36);
+    transition: background-color 0.25s;
+
     mat-icon {
         color: #fa8100;
         font-size: 24px;
     }
 
-    transition: background-color 0.25s;
     &:hover {
         background-color: #fa8100;
         color: #ffffff;

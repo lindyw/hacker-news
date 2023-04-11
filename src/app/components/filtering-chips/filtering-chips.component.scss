@@ -3,4 +3,7 @@
 }
 mat-chip {
     padding: 0 1.5rem;
+    &:hover {
+        cursor: pointer;
+    }
 }

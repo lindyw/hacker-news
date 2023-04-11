@@ -21,7 +21,7 @@
     </label>
   </div>
   <span *ngIf="!isLoading">
-    Updated by {{ updateTimestamp[type] | date : "MMM d, y, hh:mm:ss " }}
+    Updated by {{ updateTimestamp[type] | date : "MMM d, y, HH:mm:ss" }}
   </span>
   <button
     *ngIf="!isLoading"
@@ -53,7 +53,7 @@
           <span>{{ story.time * 1000 | date : "MMM d, y, h:mm a" }}</span>
         </div>
         <span class="title">
-          <a *ngIf="!!story.url" href="{{ story.url }}"> {{ story.title }}</a>
+          <a *ngIf="!!story.url" href="{{ story.url }}" target="_blank"> {{ story.title }}</a>
           <ng-container *ngIf="!story.url">{{ story.title }}</ng-container>
         </span>
         <div class="description">
