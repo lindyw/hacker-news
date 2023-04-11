@@ -23,10 +23,10 @@ My development versions:
 
 
 ## Typography:
-**1. Header ***
-	Georgia, Cambria, "Times New Roman", Times, serif
+### 1. Header
+Georgia, Cambria, "Times New Roman", Times, serif
 	These fonts offer a classic and formal aesthetic feeling, frequently use in news websites. Serif fonts are known for elegance, professionalism and readability, it is good for using as headings.
-=***2. Sub Header and Body ***
+### 2. Sub Header and Body
 	Open Sans, sans-serif
 	This font is commonly use for body text in web design, Sans-serif are known for modern, clean and simple aesthetic as well as it is versatile and legible. Open Sans has a good balance of spacing, letterforms and x-height, which makes it easy to read on different devices and screen sizes.
 	
@@ -41,10 +41,10 @@ In addition, I offer more margin, padding, line height and spacing in order to o
 	
 Implemented Features and Functionalities 
 
-***1. Infinitive Scrolling on Stories with a back to top sticky button***
+### 1. Infinitive Scrolling on Stories with a back to top sticky button
 	I noticed the original one use a table and it shows 30 items only, and the user need to click  'more…' at the bottom in order to load another 30 stories, which isn't a handy experience.
 	So I redesign the display of stories with a list of item with infinitive scrolling feature, the user just need to keep scrolling to see further more stories without extra actions, more easy to use!
-***2. Cache for stories by Type***
+### 2. Cache for stories by Type
 	It helps for performance and waiting time 
 
 
