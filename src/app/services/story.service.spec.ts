@@ -19,7 +19,7 @@ describe('StoryService', () => {
 
     afterEach(() => {
         httpMock.verify();
-        service.clearCache();
+        service.resetAndClearCache();
     });
 
     it('should be created', () => {
@@ -70,7 +70,7 @@ describe('StoryService', () => {
                 storyReq.flush(dummyStories[index]);
             });
 
-            service.clearCache();
+            service.resetAndClearCache();
         });
 
         it('should return cached stories when useCache is true', () => {
@@ -87,7 +87,7 @@ describe('StoryService', () => {
 
             httpMock.expectNone(`https://hacker-news.firebaseio.com/v0/askstories.json`);
 
-            service.clearCache();
+            service.resetAndClearCache();
         });
     });
 

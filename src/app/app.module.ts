@@ -13,7 +13,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { DateTimeAgoPipe } from './pipes/date-time-ago.pipe';
 import { FilteringChipsComponent } from './components/filtering-chips/filtering-chips.component';
@@ -22,7 +21,6 @@ import { FilteringChipsComponent } from './components/filtering-chips/filtering-
     declarations: [
         AppComponent,
         HeaderComponent,
-        FooterComponent,
         StoriesComponent,
         DateTimeAgoPipe,
         FilteringChipsComponent

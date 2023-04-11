@@ -28,7 +28,7 @@ export class FilteringChipsComponent implements OnInit {
     public updateSelection(chip: MatChip) {
         const key = chip.value;
         this.chipSelections[`${this.currentSelection}`].selected = false;
-        this.currentSelection = key;
+        this.currentSelection = parseInt(key);
         this.chipSelections[`${this.currentSelection}`].selected = true;
         this.storyType.emit(this.chipSelections[`${this.currentSelection}`].name.toLowerCase() as StoryType);
     }
